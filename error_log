@@ -1,0 +1,171 @@
+[06-Nov-2025 19:46:30 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.33. in /home/fasakha/public_html/vendor/composer/platform_check.php on line 28
+[06-Nov-2025 19:47:01 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.33. in /home/fasakha/public_html/vendor/composer/platform_check.php on line 28
+[06-Nov-2025 19:48:02 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.33. in /home/fasakha/public_html/vendor/composer/platform_check.php on line 28
+[06-Nov-2025 19:49:01 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.33. in /home/fasakha/public_html/vendor/composer/platform_check.php on line 28
+[06-Nov-2025 19:50:01 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.33. in /home/fasakha/public_html/vendor/composer/platform_check.php on line 28
+[06-Nov-2025 19:51:01 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.33. in /home/fasakha/public_html/vendor/composer/platform_check.php on line 28
+[06-Nov-2025 19:52:02 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.33. in /home/fasakha/public_html/vendor/composer/platform_check.php on line 28
+[17-Nov-2025 21:43:01 Africa/Cairo] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/fasakha/public_html/app/Http/Traits/FcmFirebase.php on line 2
+[17-Nov-2025 21:43:01 Africa/Cairo] PHP Fatal error:  Uncaught ReflectionException: Class "translator" does not exist in /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct('translator')
+#1 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build('translator')
+#2 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve('translator', Array, true)
+#3 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve('translator', Array)
+#4 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make('translator', Array)
+#5 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(119): Illuminate\Foundation\Application->make('translator', Array)
+#6 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(835): app('translator')
+#7 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(870): trans('Server Error', Array, NULL)
+#8 /home/fasakha/public_html/storage/framework/views/debb3f91b82681777e40b34f0281e1a21e310617.php(1): __('Server Error')
+#9 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(107): require('/home/fasakha/p...')
+#10 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(108): Illuminate\Filesystem\Filesystem::Illuminate\Filesystem\{closure}()
+#11 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\Filesystem\Filesystem->getRequire('/home/fasakha/p...', Array)
+#12 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(61): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/fasakha/p...', Array)
+#13 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/home/fasakha/p...', Array)
+#14 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#15 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#16 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#17 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#18 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#19 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#20 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#21 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#22 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#23 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#24 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#25 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(209): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#26 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#27 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [translator] does not exist. in /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:879
+Stack trace:
+#0 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build('translator')
+#1 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve('translator', Array, true)
+#2 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve('translator', Array)
+#3 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make('translator', Array)
+#4 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(119): Illuminate\Foundation\Application->make('translator', Array)
+#5 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(835): app('translator')
+#6 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(870): trans('Server Error', Array, NULL)
+#7 /home/fasakha/public_html/storage/framework/views/debb3f91b82681777e40b34f0281e1a21e310617.php(1): __('Server Error')
+#8 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(107): require('/home/fasakha/p...')
+#9 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(108): Illuminate\Filesystem\Filesystem::Illuminate\Filesystem\{closure}()
+#10 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\Filesystem\Filesystem->getRequire('/home/fasakha/p...', Array)
+#11 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(61): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/fasakha/p...', Array)
+#12 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/home/fasakha/p...', Array)
+#13 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#14 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#15 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#16 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#17 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#18 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#19 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#20 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#21 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#22 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#23 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#24 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(209): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#25 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#26 {main}
+
+Next Illuminate\View\ViewException: Target class [translator] does not exist. (View: /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/500.blade.php) in /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:879
+Stack trace:
+#0 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(60): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(Illuminate\Contracts\Container\BindingResolutionException), 0)
+#1 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(61): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/fasakha/p...', Array)
+#2 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/home/fasakha/p...', Array)
+#3 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#4 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#5 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#6 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#8 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#9 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#10 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#11 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#12 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#13 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#14 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(209): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#15 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#16 {main}
+  thrown in /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 879
+[17-Nov-2025 21:44:01 Africa/Cairo] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/fasakha/public_html/app/Http/Traits/FcmFirebase.php on line 2
+[17-Nov-2025 21:44:01 Africa/Cairo] PHP Fatal error:  Uncaught ReflectionException: Class "translator" does not exist in /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct('translator')
+#1 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build('translator')
+#2 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve('translator', Array, true)
+#3 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve('translator', Array)
+#4 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make('translator', Array)
+#5 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(119): Illuminate\Foundation\Application->make('translator', Array)
+#6 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(835): app('translator')
+#7 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(870): trans('Server Error', Array, NULL)
+#8 /home/fasakha/public_html/storage/framework/views/debb3f91b82681777e40b34f0281e1a21e310617.php(1): __('Server Error')
+#9 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(107): require('/home/fasakha/p...')
+#10 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(108): Illuminate\Filesystem\Filesystem::Illuminate\Filesystem\{closure}()
+#11 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\Filesystem\Filesystem->getRequire('/home/fasakha/p...', Array)
+#12 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(61): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/fasakha/p...', Array)
+#13 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/home/fasakha/p...', Array)
+#14 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#15 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#16 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#17 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#18 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#19 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#20 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#21 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#22 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#23 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#24 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#25 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(209): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#26 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#27 {main}
+
+Next Illuminate\Contracts\Container\BindingResolutionException: Target class [translator] does not exist. in /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:879
+Stack trace:
+#0 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build('translator')
+#1 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(853): Illuminate\Container\Container->resolve('translator', Array, true)
+#2 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve('translator', Array)
+#3 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(838): Illuminate\Container\Container->make('translator', Array)
+#4 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(119): Illuminate\Foundation\Application->make('translator', Array)
+#5 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(835): app('translator')
+#6 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(870): trans('Server Error', Array, NULL)
+#7 /home/fasakha/public_html/storage/framework/views/debb3f91b82681777e40b34f0281e1a21e310617.php(1): __('Server Error')
+#8 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(107): require('/home/fasakha/p...')
+#9 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(108): Illuminate\Filesystem\Filesystem::Illuminate\Filesystem\{closure}()
+#10 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\Filesystem\Filesystem->getRequire('/home/fasakha/p...', Array)
+#11 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(61): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/fasakha/p...', Array)
+#12 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/home/fasakha/p...', Array)
+#13 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#14 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#15 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#16 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#17 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#18 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#19 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#20 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#21 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#22 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#23 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#24 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(209): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#25 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#26 {main}
+
+Next Illuminate\View\ViewException: Target class [translator] does not exist. (View: /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/500.blade.php) in /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:879
+Stack trace:
+#0 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(60): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(Illuminate\Contracts\Container\BindingResolutionException), 0)
+#1 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(61): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/fasakha/p...', Array)
+#2 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(139): Illuminate\View\Engines\CompilerEngine->get('/home/fasakha/p...', Array)
+#3 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(122): Illuminate\View\View->getContents()
+#4 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/View/View.php(91): Illuminate\View\View->renderContents()
+#5 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\View\View->render()
+#6 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(55): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#8 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(85): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#9 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(582): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#10 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(490): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#11 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(356): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#12 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#13 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(173): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#14 /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(209): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\ErrorHandler\Error\FatalError))
+#15 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#16 {main}
+  thrown in /home/fasakha/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 879
