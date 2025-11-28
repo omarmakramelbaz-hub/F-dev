@@ -104,7 +104,7 @@ class OrderController extends Controller
     
     public function applies()
     {
-        $orders = Order::query();
+        $orders = Order::query()->with('carts');
         
 
         if(request('q') == 'accepted'){

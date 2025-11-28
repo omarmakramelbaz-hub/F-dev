@@ -63,6 +63,7 @@ class AuthRepository implements AuthRepositoryInterface
         }elseif ($user->status == 'accepted') {
             if(request('fcm_id')){
                 $user->update(['fcm_id' => (string)request('fcm_id')]);
+                $user->newOrExistingToken(request('fcm_id'));
                 
             }
 

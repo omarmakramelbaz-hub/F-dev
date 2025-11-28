@@ -14,98 +14,123 @@ use Kreait\Firebase\Messaging\ApnsConfig;
 use Kreait\Firebase\Factory;
 trait FcmFirebase {
 
-    public function sendFcmNotification($user_token= null , $data = [])
+    public function sendFcmNotification($user_tokens = null, $data = [])
     {
-                
-
-        $fcm = $user_token;
-        if (!$fcm) {
-            return response()->json(['message' => 'User does not have a device token'], 400);
+        // Convert single token to array for consistent processing
+        $tokens = is_array($user_tokens) ? $user_tokens : [$user_tokens];
+        
+        // Remove any null or empty tokens
+        $tokens = array_filter($tokens);
+        
+        if (empty($tokens)) {
+            return response()->json(['message' => 'No device tokens provided'], 400);
         }
-         $setting=app(GeneralSettings::class); 
+        
+        $setting = app(GeneralSettings::class); 
         $title = $data['title'];
         $description = $data['text'];
-        $account_type = $data['data']['account_type'];
-        $order_id = isset($data['data']['order_id'])?(string) $data['data']['order_id']:null;
-        $notification_sound = isset($data['data']['notification_sound'])?(string) $data['data']['notification_sound']:'default';
+        $order_id = isset($data['data']['order_id']) ? (string) $data['data']['order_id'] : null;
+        $notification_sound = isset($data['data']['notification_sound']) ? (string) $data['data']['notification_sound'] : 'default';
         $notification_type = (string) $data['data']['notification_type'];
-        $projectId = config('services.fcm.project_id'); # INSERT COPIED PROJECT ID
+        $projectId = config('services.fcm.project_id');
         
-        
-        // dd($projectId);
-
         $credentialsFilePath = public_path('firebase_credentials.json');
-    //   dd($credentialsFilePath);
-// dd($data['data']['account_type'],$data);
+        
+        // Initialize Google Client and get access token
         $client = new GoogleClient();
         $client->setAuthConfig($credentialsFilePath);
         $client->addScope('https://www.googleapis.com/auth/firebase.messaging');
         $client->refreshTokenWithAssertion();
         $token = $client->getAccessToken();
-        $sound ="default";
         $access_token = $token['access_token'];
-
+        
         $headers = [
             "Authorization: Bearer $access_token",
             'Content-Type: application/json'
         ];
-        // dd($data['data']['click_action']);
-        if($data['data']['notification_type']=='1'){
-            $action=env('APP_URL')."/admin/applies-orders/?modal=order".$data['data']['order_id'];
-        }
-        elseif (isset($data['data']['click_action']) && $data['data']['click_action']) {
-            $action=$data['data']['click_action'];
-        }
-        else{
-            $action=env('APP_URL')."/admin/dashboard";
+        
+        // Determine action URL
+        if ($data['data']['notification_type'] == '1') {
+            $action = env('APP_URL')."/admin/applies-orders/?modal=order".$data['data']['order_id'];
+        } elseif (isset($data['data']['click_action']) && $data['data']['click_action']) {
+            $action = $data['data']['click_action'];
+        } else {
+            $action = env('APP_URL')."/admin/dashboard";
         }
         
-        $array=array_merge($data['data'],[  "click_action"=> $action,
-                     "icon"=>url('/storage/').$setting->logo]);
-        $data = [
-            "message" => [
-                "token" => $fcm,
-                "notification" => [
-                    "title" => $title,
-                    "body" => $description,
-
-                ],
-                'android' => [
-                    'notification' => [ 'sound' => 'default'  ,   "icon"=>url('/storage/').$setting->logo, ] ,
-                    "data" => [
-                        "click_action" => $action // Click action for Android
-                    ]
-                ],
-                'apns' => [ 'payload' => [ 'aps' => [ 'sound' => 'default'  ,   "icon"=>url('/storage/').$setting->logo, ] ] ],
-                "data" => array_map('strval', $array)
-                
-            ]
-        ];
-        $payload = json_encode($data);
-      
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://fcm.googleapis.com/v1/projects/{$projectId}/messages:send");
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($ch, CURLOPT_VERBOSE, true); // Enable verbose output for debugging
-        $response = curl_exec($ch);
-        $err = curl_error($ch);
-    //  dd($response,$data);
-        curl_close($ch);
-
-        if ($err) {
-            return response()->json([
-                'message' => 'Curl Error: ' . $err
-            ], 500);
-        } else {
-            return response()->json([
-                'message' => 'Notification has been sent',
-                'response' => json_decode($response, true)
-            ]);
+        // Prepare common data
+        $notificationData = array_merge($data['data'], [
+            "click_action" => $action,
+            "icon" => url('/storage/').$setting->logo
+        ]);
+        
+        $responses = [];
+        $errors = [];
+        
+        // Send notification to each token
+        foreach ($tokens as $token) {
+            $message = [
+                "message" => [
+                    "token" => $token,
+                    "notification" => [
+                        "title" => $title,
+                        "body" => $description,
+                    ],
+                    'android' => [
+                        'notification' => [
+                            'sound' => 'default',
+                            "icon" => url('/storage/').$setting->logo,
+                        ],
+                        "data" => [
+                            "click_action" => $action
+                        ]
+                    ],
+                    'apns' => [
+                        'payload' => [
+                            'aps' => [
+                                'sound' => 'default',
+                                "icon" => url('/storage/').$setting->logo,
+                            ]
+                        ]
+                    ],
+                    "data" => array_map('strval', $notificationData)
+                ]
+            ];
+            
+            $payload = json_encode($message);
+            
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "https://fcm.googleapis.com/v1/projects/{$projectId}/messages:send");
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+            
+            $response = curl_exec($ch);
+            $err = curl_error($ch);
+            
+            if ($err) {
+                $errors[$token] = $err;
+            } else {
+                $responses[$token] = json_decode($response, true);
+            }
+            
+            curl_close($ch);
         }
+        
+        if (!empty($errors)) {
+            return response()->json([
+                'message' => 'Some notifications failed to send',
+                'successful' => $responses,
+                'errors' => $errors
+            ], 207); // 207 Multi-Status
+        }
+        
+        return response()->json([
+            'message' => 'All notifications have been sent',
+            'responses' => $responses
+        ]);
      }
 
 //     /** Resolve the Kreait Messaging service */

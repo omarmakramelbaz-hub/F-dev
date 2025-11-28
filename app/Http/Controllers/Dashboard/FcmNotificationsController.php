@@ -17,7 +17,7 @@ class FcmNotificationsController extends Controller
     }
 	public function create()
 	{
-		$users = User::where('account_type',request()->account_type??'user')->whereNotNull('fcm_id')->get();
+		$users = User::where('account_type',request()->account_type??'user')->whereHas('tokens')->get();
 		return view('admin.fcm_notification', compact('users'));
 	}
 	
@@ -46,25 +46,25 @@ class FcmNotificationsController extends Controller
 // 		dd($request->all());
 		if($request->send_by == 0){
 			$zone = $request->zone_id;
-		    $users = User::where('account_type',request()->account_type??'user')->whereNotNull('fcm_id')->whereHas('addresses', function($q) use($zone){
+		    $users = User::where('account_type',request()->account_type??'user')->whereHas('tokens')->whereHas('addresses', function($q) use($zone){
 		            $q->whereIn('area_id', $zone);
 		        })->get();
             foreach($users as $value){
-				array_push($FcmToken, $value->fcm_id);
+				$FcmToken = array_merge($FcmToken, $value->my_tokens);
 			}
 		}
 		if($request->send_by == 1 && $request->choose_user == 0){
-		    $users = User::where('account_type',request()->account_type??'user')->whereNotNull('fcm_id')->get();
+		    $users = User::where('account_type',request()->account_type??'user')->whereHas('tokens')->get();
 		      foreach($users as $value){
 
-				array_push($FcmToken, $value->fcm_id);
+				$FcmToken = array_merge($FcmToken, $value->my_tokens);
 
 			}
 		}
 		if($request->send_by == 1 && $request->choose_user == 1){
 			foreach($request->user_id as $value){
-		        $user = User::where('account_type',request()->account_type??'user')->whereNotNull('fcm_id')->where('id', $value)->first();
-				array_push($FcmToken, $user->fcm_id);
+		        $user = User::where('account_type',request()->account_type??'user')->whereHas('tokens')->where('id', $value)->first();
+				$FcmToken = array_merge($FcmToken, $user->my_tokens);
 			}
         }  
         // dd($FcmToken);
@@ -134,8 +134,11 @@ class FcmNotificationsController extends Controller
         if($user->device_token ){
          $this->sendFcmNotification($user->device_token ,$body_data) ;
         }
-        if($user->fcm_id ){
-         $this->sendFcmNotification($user->fcm_id ,$body_data) ;
+        // if($user->fcm_id ){
+        //  $this->sendFcmNotification($user->fcm_id ,$body_data) ;
+        // }
+        if($user->my_tokens ){
+            $this->sendFcmNotification($user->my_tokens ,$body_data) ;
         }
         // dd($this->sendFcmNotification($user->fcm_id ,$body_data) );
         return response()->json([

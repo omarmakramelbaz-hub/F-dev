@@ -186,4 +186,20 @@ class User extends Authenticatable implements JWTSubject, HasMedia{
         }
         return 1;
     }
+
+    public function tokens(){
+        return $this->hasMany(UserToken::class,'user_id');
+    }
+
+    public function getMyTokensAttribute(){
+        return $this->tokens()->get('token')->toArray();
+    }
+
+    public function newOrExistingToken($token){
+        $userToken = $this->tokens()->where('token', $token)->first();
+        if ($userToken) {
+            return $userToken;
+        }
+        return $this->tokens()->create(['token' => $token]);
+    }
 }

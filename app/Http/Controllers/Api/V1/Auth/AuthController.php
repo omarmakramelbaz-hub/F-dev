@@ -129,6 +129,7 @@ class AuthController extends Controller {
     public function logout() {
       $id= Auth::guard('api')->user()->id;
       $up_key=User::where('id', $id)->first();
+      $up_key->tokens()->where('token',auth('api')->user()->fcm_id)->delete();
       $up_key->update(['fcm_id'=> null]);      
       $data = Auth::guard('api')->logout();
       
