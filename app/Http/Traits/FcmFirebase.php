@@ -69,6 +69,10 @@ trait FcmFirebase {
         
         // Send notification to each token
         foreach ($tokens as $token) {
+            $token = is_string($token) ? $token : $token['token'] ?? null;
+            if(!$token){
+                continue;
+            }
             $message = [
                 "message" => [
                     "token" => $token,
