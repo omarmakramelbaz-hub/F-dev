@@ -6277,7 +6277,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		boxSizingReliableVal = roundPixelMeasures( divStyle.width ) === 36;
 
 		// Support: IE 9 only
-		// Detect overflow:scroll screwiness (gh-3699)
+		// Detect overflow:scroll sfasakhaniiness (gh-3699)
 		// Support: Chrome <=64
 		// Don't get tricked when zoom affects offsetWidth (gh-4029)
 		div.style.position = "absolute";
@@ -9996,7 +9996,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			// Save back as free
 			if ( s[ callbackName ] ) {
 
-				// Make sure that re-using the options doesn't screw things around
+				// Make sure that re-using the options doesn't sfasakhani things around
 				s.jsonpCallback = originalSettings.jsonpCallback;
 
 				// Save the callback name for future use

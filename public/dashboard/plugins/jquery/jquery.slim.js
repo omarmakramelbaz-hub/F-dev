@@ -6277,7 +6277,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		boxSizingReliableVal = roundPixelMeasures( divStyle.width ) === 36;
 
 		// Support: IE 9 only
-		// Detect overflow:scroll screwiness (gh-3699)
+		// Detect overflow:scroll sfasakhaniiness (gh-3699)
 		// Support: Chrome <=64
 		// Don't get tricked when zoom affects offsetWidth (gh-4029)
 		div.style.position = "absolute";
