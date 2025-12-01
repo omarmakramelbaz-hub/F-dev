@@ -59,7 +59,7 @@ Route::post('send_chat_notification', [FcmNotificationsController::class, 'send_
         Route::get('/chat', [FcmNotificationsController::class, 'chat']);
         
                         Route::get('/resturantControl', [HomeController::class, 'resturantControl'])->name('resturantControl');
-
+        Route::get('/getOrders', [OrderController::class, 'getOrders'])->name('getOrders');
        
         Route::post('/updateorders/{order}', ['App\Http\Controllers\Api\V1\Vendor\OrderController','updateOrder'])->name('vendor.updateOrder');
         Route::post('/acceptOrder/{order}', ['App\Http\Controllers\Api\V1\Vendor\OrderController','acceptOrder'])->name('vendor.acceptOrder');

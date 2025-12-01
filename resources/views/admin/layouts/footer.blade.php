@@ -235,6 +235,10 @@ navigator.serviceWorker.addEventListener('message', (event) => {
                 const audio = new Audio(`{{url('/')}}/sounds/mixkit-correct-answer-reward-952.wav`); // your file in public/sounds/
                 audio.loop = true;
                 audio.play().catch(err => console.warn('Audio play failed:', err));
+    if ($('#all_orders').length) {
+        reloadOrderSections();
+    } 
+
             // }
           // Check if the page is in the background
             // if (document.visibilityState === 'hidden' && clickAction) {

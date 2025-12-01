@@ -25,6 +25,38 @@ class OrderController extends Controller
         $this->middleware('permission:order-list', ['only' => ['index','show']]);
         $this->middleware('permission:order-delete', ['only' => ['destroy','delete_all']]);
     }
+
+    public function getOrders(Request $request)
+    {
+        // Get orders for each status group with limit 20
+        $pendingOrders = Order::has('carts')->orderBy('id','DESC')->whereIn('status', ['pending', 'another_delegate'])
+            ->latest()
+            ->limit(20)
+            ->get();
+
+        $acceptedOrders = Order::has('carts')->orderBy('id','DESC')->whereIn('status', ['accepted', 'shipped', 'new_order'])
+            ->latest()
+            ->limit(20)
+            ->get();
+
+        $completedOrders = Order::has('carts')->orderBy('id','DESC')->where(function($query) {
+                $query->whereIn('status', ['completed', 'cancelled', 'declined'])
+                    ->orWhereNull('status');
+            })
+            ->latest()
+            ->limit(20)
+            ->get();
+
+        // Combine all orders
+        $orders = $pendingOrders->merge($acceptedOrders)->merge($completedOrders);
+
+        $view = view('admin.orders.order_section', compact('orders'))->render();
+
+        return response()->json([   
+            'view' => $view,
+            'count' => $orders->count()
+        ]);
+    }
      public function downloadInvoice(Request $request)
     {        
         
@@ -111,7 +143,7 @@ class OrderController extends Controller
         $orders = $orders->whereIn('status',['accepted','shipped','new_order']);
         }
         else if(request('q') == 'completed'){
-        $order = $order->where(function ($q) {
+        $orders = $orders->where(function ($q) {
                     $q->whereIn('status', ['cancelled', 'completed', 'declined'])
                       ->orWhereNull('status');
                 });
