@@ -15,9 +15,18 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Ticket;
+use App\Models\SocialAccount;
 class User extends Authenticatable implements JWTSubject, HasMedia{
 	use HasFactory, Notifiable,HasRoles;
     use InteractsWithMedia;
+
+    /**
+     * Get the social accounts for the user.
+     */
+    public function socialAccounts()
+    {
+        return $this->hasMany(SocialAccount::class);
+    }
 	protected $table = 'users';
 	protected $guard_name = 'admin';
 	protected $guarded = [];

@@ -20,7 +20,7 @@ class AuthRepository implements AuthRepositoryInterface
 
     public function login(array $Details) 
     {
-        
+        dd('dslfk,sld');
           if (substr($Details['mobile'], 0, 1) === '0') {
         $Details['mobile'] = substr($Details['mobile'], 1);
     }
