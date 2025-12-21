@@ -47,7 +47,7 @@ class Resturant extends Model implements HasMedia
        return $this->hasMany(ResturantProduct::class,'resturant_id')->where('highest_rated','yes')->orderBy('category_id','ASC');
     }
     public function resturant_areas() {
-       return $this->hasMany(ResturantArea::class,'resturant_id')->has('area');
+       return $this->hasMany(ResturantArea::class,'resturant_id');
     }
     
     public function owner() {
