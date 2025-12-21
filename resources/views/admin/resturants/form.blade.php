@@ -199,7 +199,7 @@
                 </div>
                 @php $key = 0; @endphp
                 <div class="form-group col-sm-6">
-                    <label for="expected_delivery" class="expected_delivery">{{$key==0?__('main.expected_delivery_km'):__('main.expected_delivery')}}</label><span class="text-danger">*</span>
+                    <label for="expected_delivery" class="expected_delivery">{{('main.expected_delivery_km')}}</label><span class="text-danger">*</span>
                     <input required type="text" name="expected_delivery[]"
                         class="form-control @error('expected_delivery') is-invalid @enderror" id="expected_delivery" placeholder="">
                 </div>
