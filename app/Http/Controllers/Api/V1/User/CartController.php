@@ -620,31 +620,43 @@ class CartController extends Controller {
         $restaurant_id = $request->input('restaurant_id');
         $customer_lat = $request->input('customer_lat');
         $customer_lng = $request->input('customer_lng');
+        
         $restaurant = Resturant::findOrFail($restaurant_id);
-        $restaurantGovernorates = Area::whereIn('id', $restaurant->resturant_areas()->pluck('area_id')->toArray())
-            ->pluck('cairo_id')
-            ->unique(); 
-        $city_name = getCityName($customer_lat, $customer_lng);
-    // dd($customerArea);
-        $customerArea = Area::where('title_ar', 'like', '%' . $city_name . '%')
-            ->orWhere('title_en', 'like', '%' . $city_name . '%')
-            ->first();
-    
-        if (!$customerArea) {
-            return response()->json(['message' => 'لم يتم تحديد منطقتك، يرجى التأكد من GPS.'], 400);
+        
+        // Get all restaurant areas with lat/lng and expected_delivery
+        $restaurantAreas = ResturantArea::where('resturant_id', $restaurant_id)
+            ->whereNotNull('lat')
+            ->whereNotNull('lng')
+            ->whereNotNull('expected_delivery')
+            ->get();
+        
+        // Check if customer location is within delivery range of any restaurant area
+        foreach ($restaurantAreas as $restaurantArea) {
+            // Calculate distance between customer location and restaurant area using Haversine formula
+            $earthRadius = 6371; // kilometers
+            $lat1 = deg2rad($customer_lat);
+            $lng1 = deg2rad($customer_lng);
+            $lat2 = deg2rad($restaurantArea->lat);
+            $lng2 = deg2rad($restaurantArea->lng);
+            
+            $latDiff = $lat2 - $lat1;
+            $lngDiff = $lng2 - $lng1;
+            
+            $a = sin($latDiff / 2) * sin($latDiff / 2) +
+                cos($lat1) * cos($lat2) *
+                sin($lngDiff / 2) * sin($lngDiff / 2);
+            
+            $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+            $distance = $earthRadius * $c;
+            
+            // If customer location is within expected_delivery range (in km), restaurant can deliver
+            if ($distance <= $restaurantArea->expected_delivery) {
+                return response()->json(['can_deliver' => true]);
+            }
         }
-    
-        $customerGovernorate = $customerArea->cairo_id;
-    
-        if ($restaurantGovernorates->contains($customerGovernorate) && $customerArea->cairo_id != null) {
-            return response()->json(['can_deliver' => true]);
-        }
-    
-        $canDeliver = ResturantArea::where('resturant_id', $restaurant_id)
-            ->where('area_id', $customerArea->id)
-            ->exists();
-    
-        return response()->json(['can_deliver' => $canDeliver]);
+        
+        // If no areas are within range, restaurant cannot deliver
+        return response()->json(['can_deliver' => false]);
     }
 
  public function last_order(){
