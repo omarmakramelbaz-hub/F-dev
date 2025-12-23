@@ -295,7 +295,6 @@ class CategoryController extends Controller
                 }
             }
 
-            dd('gdfgdfg');
 
             // Apply the filter to the query
             if (!empty($filteredRestaurantIds)) {
