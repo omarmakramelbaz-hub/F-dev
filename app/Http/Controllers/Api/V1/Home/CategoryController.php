@@ -349,7 +349,7 @@ class CategoryController extends Controller
             WHEN status = 'closed' THEN 3       -- المغلق ثالثًا
             ELSE 4
         END
-    ")->orderBy('distance', 'asc');
+    ");
 
         $resturant = $resturant->get();
         $productData = ResturantResource::collection($resturant);
@@ -372,11 +372,13 @@ class CategoryController extends Controller
 
             // Get all restaurants with their areas that have lat/lng and expected_delivery
             $allRestaurants = clone $resturant;
-            $allRestaurants = $allRestaurants->with(['resturant_areas' => function($q) {
-                $q->whereNotNull('lat')
-                  ->whereNotNull('lng')
-                  ->whereNotNull('expected_delivery');
-            }])->get();
+            $allRestaurants = $allRestaurants->with([
+                'resturant_areas' => function ($q) {
+                    $q->whereNotNull('lat')
+                        ->whereNotNull('lng')
+                        ->whereNotNull('expected_delivery');
+                }
+            ])->get();
 
             // Filter restaurants where user's location is within expected_delivery range of any area
             $filteredRestaurantIds = [];
@@ -388,14 +390,14 @@ class CategoryController extends Controller
                     $lng1 = deg2rad($longitude);
                     $lat2 = deg2rad($restaurantArea->lat);
                     $lng2 = deg2rad($restaurantArea->lng);
-                    
+
                     $latDiff = $lat2 - $lat1;
                     $lngDiff = $lng2 - $lng1;
-                    
+
                     $a = sin($latDiff / 2) * sin($latDiff / 2) +
                         cos($lat1) * cos($lat2) *
                         sin($lngDiff / 2) * sin($lngDiff / 2);
-                    
+
                     $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
                     $distance = $earthRadius * $c;
 
