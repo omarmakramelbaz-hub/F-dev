@@ -287,7 +287,6 @@ class CategoryController extends Controller
                     $distance = $earthRadius * $c;
 
                     // If user location is within expected_delivery range (in km), include this restaurant
-                    dump($distance, $restaurantArea->expected_delivery);
                     if ($distance <= $restaurantArea->expected_delivery) {
                         $filteredRestaurantIds[] = $restaurant->id;
                         break; // No need to check other areas for this restaurant
