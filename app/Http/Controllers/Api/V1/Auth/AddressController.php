@@ -56,7 +56,7 @@ class AddressController extends Controller
                                 $restaurantArea->lat,
                                 $restaurantArea->lng
                             );
-
+                            dd($distance, $restaurantArea->expected_delivery);
                             // If address is within expected_delivery range (in km), include it
                             if ($distance <= $restaurantArea->expected_delivery) {
                                 return true;
