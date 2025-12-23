@@ -16,7 +16,7 @@ class OrderStatusUpdated implements ShouldBroadcastNow
 
     public function __construct(Order $order)
     {
-        $this->order = $order;
+        $this->order = $order->load('resturant');
     }
 
     public function broadcastOn()
@@ -28,5 +28,14 @@ class OrderStatusUpdated implements ShouldBroadcastNow
     public function broadcastAs()
     {
         return 'status-updated';
+    }
+
+    public function broadcastWith()
+    {
+        return [
+            'order_id' => $this->order->id,
+            'order_status' => $this->order->status,
+            'restaurant_name' => $this->order->resturant->name,
+        ];
     }
 }
