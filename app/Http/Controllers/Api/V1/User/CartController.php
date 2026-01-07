@@ -27,7 +27,7 @@ use App\Interfaces\ServiceRepositoryInterface;
 use App\Http\Requests\Api\User\OrderRequest;
 use App\Http\Requests\Api\User\ReviewRequest;
 use App\Http\Requests\Api\User\ComessionOrderDelegateRequest;
-use App\Http\Resources\Api\Vendor\ResturantResource;
+use App\Http\Resources\Api\User\ResturantResource;
 use App\Http\Resources\Api\Vendor\ResturantProductResource;
 use App\Http\Resources\Api\User\OrderResource;
 use App\Http\Resources\Api\User\ResturantCartResource;
