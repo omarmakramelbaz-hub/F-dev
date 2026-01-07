@@ -69,6 +69,7 @@ class CartController extends Controller
         if ($product) {
             $cart = Cart::where([
                 'user_id' => auth('api')->user()->id,
+                'is_order' => false,
                 //  'order_id'=>$order->id,
                 'resturant_id' => $product->resturant_id,
                 'resturant_product_id' => $product->id,
