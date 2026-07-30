@@ -757,7 +757,24 @@ $(document).ready(function () {
     }
 
     // Function to stop notification sound
-    function stopSound() {
+function stopSound() {
+    notificationSound.pause();
+    notificationSound.currentTime = 0;
+    isSoundPlaying = false;
+}
+
+// Listen for stop notification from other tabs
+window.addEventListener('storage', function (event) {
+
+    if (event.key === 'stopOrderNotification') {
+
+        stopSound();
+
+        $('#alertBanner').remove();
+        $('#notifications').empty();
+    }
+
+});
         notificationSound.pause();
         notificationSound.currentTime = 0; // Reset sound to the beginning
         isSoundPlaying = false;

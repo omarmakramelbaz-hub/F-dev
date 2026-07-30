@@ -350,35 +350,29 @@ $(document).on('click',".all_orders .modal .btn-close",function(e){
         $('#product-details').modal('hide');
     }
 
-    function changeOrderStatus(e){
-        e.preventDefault();
+    success: function(response) {
+    if (response.status == 'Success') {
 
-        const button = e.target;
-        const form = $(button).closest('form');
-        
-        const formData = form.serialize();
+        toastr.success(response.message || 'تم الحفظ بنجاح');
+                    localStorage.setItem('stopOrderNotification', Date.now());
 
-        $.ajax({
-            url: form.attr('action'),
-            type: form.attr('method'),
-            data: formData,
-            dataType: 'json',  // Explicitly expect JSON response
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',  // Indicate AJAX request
-                'Accept': 'application/json'           // Request JSON response
-            },
-            success: function(response) {
-                // Handle success response
-                if (response.status == 'Success') {
-                    // Show success message if needed
-                    toastr.success(response.message || 'تم الحفظ بنجاح');
-                    reloadOrderSections();
-                    $("#product-details").modal('hide');
-                } else {
-                    // Handle error from server
-                    toastr.error(response.message || 'حدث خطأ ما');
-                }
-            },
+        // إيقاف صوت التنبيه
+        if (typeof stopSound === 'function') {
+            stopSound();
+        }
+
+        // حذف الشريط البرتقالي
+        $('#alertBanner').remove();
+        $('#notifications').empty();
+
+        reloadOrderSections();
+
+        $("#product-details").modal('hide');
+
+    } else {
+        toastr.error(response.message || 'حدث خطأ ما');
+    }
+},
             error: function(xhr, status, error) {
                 // Handle AJAX error
                 toastr.error('حدث خطأ في الاتصال بالخادم');
@@ -411,7 +405,17 @@ $(document).on('click',".all_orders .modal .btn-close",function(e){
                 if (response.status == 'Success') {
                     // Show success message if needed
                     toastr.success(response.message || 'تم الحفظ بنجاح');
-                    reloadOrderSections();
+                    localStorage.setItem('stopOrderNotification', Date.now());
+            
+// إيقاف صوت التنبيه
+               if (typeof stopSound === 'function') {
+                stopSound();
+}
+
+// حذف الشريط البرتقالي
+               $('#alertBanner').remove();
+               $('#notifications').empty();
+        reloadOrderSections();
                     $("#product-details").modal('hide');
                     // Print after successful submission
                     printInvoice(id);
