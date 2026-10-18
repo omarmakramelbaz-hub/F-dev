@@ -198,6 +198,9 @@ class AuthController extends Controller {
            if ($request->wantsJson() || $request->is('api/*')) {
 
                 return $this->errorResponse(trans('api.api.error in password'));
+           }else{
+                return back()->with('error',trans('api.api.error in password'));
+           }
     }
 
     /**
@@ -280,10 +283,6 @@ class AuthController extends Controller {
         }
         
         return null;
-    }
-                         }else{
-                             return back()->with('error',trans('api.api.error in password'));
-                         }
     }
     
   
