@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "user_local_snapshot_date": "2026-10-20",
+  "capture_recorded_at": "2026-10-19T23:41:21.815Z",
+  "repository": "omarmakramelbaz-hub/F-dev",
+  "backup_branch": "backup/2026-10-20-all-apps",
+  "default_branch": "main",
+  "default_branch_commit": "fcb5e3e5b746329f0be46e17f59375d2ffe70b3c",
+  "default_tree_sha": "99f12c862403ae404b33adc7f1b00b4ce9d21dac",
+  "branches": [
+    {
+      "ref": "refs/heads/backup/pre-rollback-20261003-0303",
+      "commit_sha": "f93135e3ef754847ef722044a01a381509d53a71"
+    },
+    {
+      "ref": "refs/heads/codex/f-dev-auth-address-review-20261018",
+      "commit_sha": "45eadfb6525aa075ac383ce3daeedf1e69181d17"
+    },
+    {
+      "ref": "refs/heads/main",
+      "commit_sha": "fcb5e3e5b746329f0be46e17f59375d2ffe70b3c"
+    }
+  ],
+  "tags": [],
+  "scope": {
+    "source_commit_histories": true,
+    "unmerged_branch_tips": true,
+    "live_server_working_tree": false,
+    "live_database": false,
+    "server_environment_secrets": false,
+    "server_uploads": false,
+    "external_lfs_payloads": false,
+    "external_submodule_repositories": false,
+    "github_release_assets": false
+  },
+  "preservation_method": "Archival ancestry anchor. The snapshot tree equals the captured default tree plus this manifest. Other branch tips are retained as parents, directly or through grouped archival commits. This is not a merge of their file contents. Do not merge this archival branch into development. Restore a specific source version by checking out its original commit from the branches/tags map.",
+  "verification": "Parent objects, archive tree, manifest and final branch ref are read back after creation. No production deployment or database restore performed."
+}
